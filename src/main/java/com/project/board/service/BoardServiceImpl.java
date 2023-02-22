@@ -66,7 +66,7 @@ public class BoardServiceImpl implements BoardService {
 	// 일반 게시글 상세 조회하기
 	@Override
 	public BoardDTO boardDetail(int bno) throws Exception {
-		
+		 
 		logger.info("BoardServiceImpl에서 일반 게시글 상세 조회하기 시작");
 	
 		return boardDAO.boardDetail(bno);

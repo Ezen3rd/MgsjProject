@@ -29,7 +29,7 @@ request.setCharacterEncoding("UTF-8");
 				<!-- 
 				bno int userId varchar(20) 
 				writer varchar(20) 
-				title varchar(50) 
+				title varchar(50)  
 				content text 
 				regDate datetime
 				readCount int

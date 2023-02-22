@@ -16,7 +16,7 @@ public class BoardDAOImpl implements BoardDAO {
 	private static final Logger logger = LoggerFactory.getLogger(BoardDAOImpl.class);
 
 	@Autowired
-	private SqlSession sqlSession;
+	private SqlSession sqlSession; 
 
 	private static final String NAME_SPACE = "mappers.boardMapper";
 

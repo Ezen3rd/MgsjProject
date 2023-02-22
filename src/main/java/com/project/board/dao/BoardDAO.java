@@ -6,7 +6,7 @@ import com.project.board.domain.BoardDTO;
 
 public interface BoardDAO {
 
-	
+	 
 	// 운영진 게시글 등록하기 
 	public void boardWriteOp(BoardDTO boardDTO) throws Exception;
 	
