@@ -14,7 +14,7 @@ public interface BoardService {
 	
 	// 공지 게시글 삭제하기
 	public void boardDeleteOp(int bno) throws Exception; 
-	
+	 
 	// 이용자 게시글 삭제하기
 	public void boardDelete(int bno) throws Exception;
 	

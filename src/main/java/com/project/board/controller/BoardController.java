@@ -70,7 +70,7 @@ public class BoardController {
 		logger.info("BoardController에서 운영진 게시글 삭제하기 시작");
 		
 		boardService.boardDeleteOp(bno); 
-		
+		 
 		return "redirect:/board/main";
 	}
 		
