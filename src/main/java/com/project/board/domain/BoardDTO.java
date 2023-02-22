@@ -16,6 +16,7 @@ public class BoardDTO {
 	private String title;
 	private String content;
 	private Date regDate;
+	private int readCount;
 
 	public int getBno() {
 		return bno;
@@ -65,10 +66,21 @@ public class BoardDTO {
 		this.regDate = regDate;
 	}
 
-	@Override
-	public String toString() {
-		return "BoardDTO [bno=" + bno + ", userId=" + userId + ", writer=" + writer + ", title=" + title + ", content=" + content + ", regDate="
-				+ regDate + "]";
+	public int getReadCount() {
+		return readCount;
 	}
 
+	public void setReadCount(int readCount) {
+		this.readCount = readCount;
+	}
+
+	@Override
+	public String toString() {
+		return "BoardDTO [bno=" + bno + ", userId=" + userId + ", writer=" + writer + ", title=" + title + ", content="
+				+ content + ", regDate=" + regDate + ", readCount=" + readCount + "]";
+	}
+
+	
+	
+	
 }

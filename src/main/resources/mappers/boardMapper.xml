@@ -10,6 +10,33 @@
 	regDate datetime
 	readCount int
 	 -->
+	 
+	 
+	 <!-- 공지 게시글 목록 -->
+	 
+	 <select id = "boardListOp" resultType = "com.project.board.domain.BoardDTO">
+	 
+	 SELECT bno, writer, title, content, regDate, readCount
+	 FROM boarddto
+	 WHERE userId = '1111'
+	 ORDER BY bno DESC
+	 
+	 </select>
+	 
+	 
+	 <!-- 일반 게시글 목록 -->
+	 
+	 
+	 <select id = "boardList" resultType = "com.project.board.domain.BoardDTO">
+	 
+	 SELECT bno, writer, title, content, regDate, readCount
+	 FROM boarddto
+	 ORDER BY bno DESC;
+	 
+	 </select>
+	 
+	  
+	 <!-- 공지 게시글 등록 -->
 	<insert id="boardWriteOp"
 		parameterType="com.project.board.domain.BoardDTO">
 
@@ -19,6 +46,7 @@
 
 	</insert>
 
+	<!-- 일반 게시글 등록 -->
 	<insert id="boardWrite"
 		parameterType="com.project.board.domain.BoardDTO">
 

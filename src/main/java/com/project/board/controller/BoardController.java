@@ -1,7 +1,6 @@
 package com.project.board.controller;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
+import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,7 +9,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.project.board.domain.BoardDTO;
 import com.project.board.service.BoardServiceImpl;
@@ -34,11 +32,11 @@ public class BoardController {
 		
 		return "/board/boardWriteFormOp";
 	}
-	// 이용자 게시글 작성폼
+	// 일반 게시글 작성폼
 	@RequestMapping(value = "/board/boardWriteForm", method = RequestMethod.GET)
 	public String boardWriteForm() throws Exception {
 		
-		logger.info("BoardController에서 이용자 게시글 쓰기 시작");
+		logger.info("BoardController에서 일반 게시글 쓰기 시작");
 		
 		
 		return "/board/boardWriteForm";
@@ -54,11 +52,11 @@ public class BoardController {
 		
 		return "redirect:/board/main";
 	}
-	// 이용자 게시글 등록하기
+	// 일반 게시글 등록하기
 		@RequestMapping(value = "/board/boardWrite", method = RequestMethod.POST)
 		public String boardWrite(BoardDTO boardDTO) throws Exception {
 			
-			logger.info("BoardController에서 이용자 게시글 등록하기 시작");
+			logger.info("BoardController에서 일반 게시글 등록하기 시작");
 			
 			boardService.boardWrite(boardDTO);
 			
@@ -77,11 +75,11 @@ public class BoardController {
 	}
 		
 		
-	// 이용자 게시글 삭제하기
-	@RequestMapping(value = "/board/boardDeleteOp", method = RequestMethod.POST)
+	// 일반 게시글 삭제하기
+	@RequestMapping(value = "/board/boardDelete", method = RequestMethod.POST)
 	public String boardDelete(int bno) throws Exception {
 		
-		logger.info("BoardController에서 이용자 게시글 삭제하기 시작");
+		logger.info("BoardController에서 일반 게시글 삭제하기 시작");
 		
 		boardService.boardDelete(bno);
 		
@@ -102,11 +100,11 @@ public class BoardController {
 		
 	}
 	
-	// 이용자 게시글 상세 조회하기
+	// 일반 게시글 상세 조회하기
 	@RequestMapping(value = "/board/boardDetail", method = RequestMethod.GET)
 	public void boardDetail(Model model, BoardDTO boardDTO, int bno) throws Exception {
 		
-		logger.info("BoardController에서 이용자 게시글 상세 조회 시작하기");
+		logger.info("BoardController에서 일반 게시글 상세 조회 시작하기");
 		
 	
 		boardService.boardDetail(bno);
@@ -147,7 +145,33 @@ public class BoardController {
 	*/
 	
 	
+	// 공지 게시글 목록보기
+	@RequestMapping(value = "/board/boardListOp", method = RequestMethod.GET)
+	public void boardListOp(Model model) throws Exception {
+		
+		logger.info("BoardController에서 공지 게시글 목록보기 시작");
+		
+		List<BoardDTO> boardList = boardService.boardListOp();
+		
+		logger.info("공지 게시글 목록 ==> " + boardList);
+		
+		model.addAttribute("boardListOp", boardList);
+		
+	}
 	
+	// 일반 게시글 목록보기
+	@RequestMapping(value = "/board/boardList", method = RequestMethod.GET)
+	public void boardList(Model model) throws Exception {
+		
+		logger.info("BoardController에서 일반 게시글 목록보기 시작");
+		
+		List<BoardDTO> boardList = boardService.boardList();
+		
+		logger.info("일반 게시글 목록 ==> " + boardList);
+		
+		model.addAttribute("boardList", boardList);
+		
+	}
 }
 
 

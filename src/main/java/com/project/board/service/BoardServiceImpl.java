@@ -1,5 +1,7 @@
 package com.project.board.service;
  
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,20 +27,20 @@ public class BoardServiceImpl implements BoardService {
 		boardDAO.boardWriteOp(boardDTO);
 	}
 	
-	// 이용자 게시글 등록하기
+	// 일반 게시글 등록하기
 	@Override
 	public void boardWrite(BoardDTO boardDTO) throws Exception {
 		
-		logger.info("BoardServiceImpl에서 이용자 게시글 등록하기 시작");
+		logger.info("BoardServiceImpl에서 일반 게시글 등록하기 시작");
 		
 		boardDAO.boardWrite(boardDTO);
 	}
 	
-	// 이용자 게시글 삭제하기
+	// 일반 게시글 삭제하기
 	@Override
 	public void boardDelete(int bno) throws Exception {
 		
-		logger.info("BoardServiceImpl에서 이용자 게시글 삭제하기 시작");
+		logger.info("BoardServiceImpl에서 일반 게시글 삭제하기 시작");
 		
 	boardDAO.boardDelete(bno);
 	}
@@ -52,7 +54,7 @@ public class BoardServiceImpl implements BoardService {
 	boardDAO.boardDeleteOp(bno);
 	}
 	
-	//공지 게시글 상세 조회하기
+	// 공지 게시글 상세 조회하기
 	@Override
 	public BoardDTO boardDetailOp(int bno) throws Exception {
 		
@@ -61,13 +63,32 @@ public class BoardServiceImpl implements BoardService {
 		return boardDAO.boardDetailOp(bno);
 	}
 	
-	//이용자 게시글 상세 조회하기
+	// 일반 게시글 상세 조회하기
 	@Override
 	public BoardDTO boardDetail(int bno) throws Exception {
 		
-		logger.info("BoardServiceImpl에서 이용자 게시글 상세 조회하기 시작");
+		logger.info("BoardServiceImpl에서 일반 게시글 상세 조회하기 시작");
 	
 		return boardDAO.boardDetail(bno);
+	}
+	
+	// 공지 게시글 목록보기
+	@Override
+	public List<BoardDTO> boardListOp() throws Exception {
+		
+		logger.info("BoardServiceImpl에서 공지 게시글 상세 조회하기 시작");
+	
+		return boardDAO.boardListOp();
+	}
+	
+	//일반 게시글 목록보기
+	
+	@Override
+	public List<BoardDTO> boardList() throws Exception {
+		
+		logger.info("BoardServiceImpl에서 일반 게시글 상세 조회하기 시작");
+		
+		return boardDAO.boardList();
 	}
 }
 
