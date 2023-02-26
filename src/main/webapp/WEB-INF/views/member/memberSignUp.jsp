@@ -29,26 +29,36 @@
 				<label for="email">이메일</label>
 				<input type="email" id="userEmail" name="userEmail"/>
 			</div>
-			<!-- <div>
+			<div>
 				<label for="post">우편번호</label>
 				<input type="text" id="postAddress" name="postAddress"/>
 			</div>
 			<div>
-				<label for="address">상세주소1</label>
+				<label for="email">주소</label>
 				<input type="text" id="address" name="address"/>
 			</div>
 			<div>
-				<label for="detailAddress">상세주소2</label>
+				<label for="email">상세주소</label>
 				<input type="text" id="detailAddress" name="detailAddress"/>
-			</div> -->
+			</div>
 			<div>
 				<input type="radio" name="userGender" value="F">
 				<label for="check"> 여 </label>
 				<input type="radio" name="userGender" value="M">
 				<label for="check"> 남 </label>
 			</div>
-			<button type="submit">회원가입</button>
+			<button type="submit" onclick="connectAddressPage()">회원가입</button>
 		</form>
 	</div>
+	<script type="text/javascript">
+		/* function connectAddressPage() {
+			let addressYN = confirm("회원가입이 완료되었습니다.\n상세주소 등록을 지금 하시겠습니까?");
+			
+			if (addressYN == true) {
+				alert("상세주소 입력 페이지로 이동합니다.");
+				location.href = "/member/";
+			}
+		} */
+	</script>
 </body>
 </html>

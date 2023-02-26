@@ -52,6 +52,22 @@ public class MemberController {
 
 		return "redirect:/member/memberLoginPage";
 	}
+	
+	/*
+	 * // 상세주소 접속 페이지
+	 * 
+	 * @RequestMapping(value = "/member/connectMemberAddressPage", method = RequestMethod.GET) public void connectMemberAddressPage() throws Exception {
+	 * 
+	 * logger.info("회원 상세 정보 등록 connectMemberAddressPage - controller"); }
+	 * 
+	 * // 상세주소 구현 로직
+	 * 
+	 * @RequestMapping(value = "/member/memberInsertAddress", method = RequestMethod.GET) public String memberInsertAddress() throws Exception {
+	 * 
+	 * logger.info("상세주소기입 실행 memberInsertAddress - controller");
+	 * 
+	 * return "redirect:/member/memberLoginPage"; }
+	 */
 
 	// 로그인 페이지 접속
 	@RequestMapping(value = "/member/memberLoginPage", method = RequestMethod.GET)
@@ -87,7 +103,7 @@ public class MemberController {
 		return "redirect:/board/boardMain";
 	}
 	
-	// 로그아웃 기능 구현
+	// 로그아웃 로직
 	@RequestMapping(value = "/member/memberLogout", method = RequestMethod.GET)
 	public String memberLogout(HttpSession session) throws Exception {
 		
@@ -98,7 +114,7 @@ public class MemberController {
 		return "redirect:/board/boardMain";
 	}
 	
-	// 회원정보수정 기능 구현
+	// 회원정보수정 페이지 접속
 	@RequestMapping(value = "/member/memberModifyPage", method = RequestMethod.GET)
 	public void connectMemberModifyPage() throws Exception {
 		

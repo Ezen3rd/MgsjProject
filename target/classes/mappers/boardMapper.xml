@@ -1,106 +1,68 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mappers.boardMapper">
-	<!-- 
-	bno int userId varchar(20) 
-	writer varchar(20) 
-	title varchar(50) 
-	content text 
-	regDate datetime
-	readCount int
-	 -->
-	 <!-- 공지 게시글 상세 조회하기 -->
-	<select id = "boardDetailOp" parameterType = "int" resultType = "com.project.board.domain.BoardDTO">
-	
-	SELECT bno, userId, write, title, content, regDate, readCount
-	FROM boarddto
-	WHERE bno = #{bno}
-	and userId = '1111'
-	
-	</select>
-	
-	
-	<!-- 이용자 게시글 상세 조회하기 -->	
-	<select id = "boardDetail" parameterType = "int" resultType = "com.project.board.domain.BoardDTO">
-	
-	SELECT bno, write, title, content, regDate, readCount
-	FROM boarddto
-	WHERE bno = #{bno}
-	and not userId = '1111'
-	
-	
-	</select>
-	 
-	 <!-- 공지 게시판 게시글 작성 -->
-	<insert id="boardWriteOp"
-		parameterType="com.project.board.domain.BoardDTO">
+	<!-- bno int userId varchar(20) writer varchar(20) title varchar(50) content text regDate datetime readCount int -->
 
-		INSERT INTO boarddto(bno, userId, writer, title, content, readCount)
-		values (#{bno}, #{userId}, #{writer}, #{title}, #{content}, #{readCount});
 
+	<!-- 공지 게시글 목록 -->
+	<select id="adminBoardList" resultType="com.project.board.domain.BoardDTO">
+		SELECT bno, userId, writer, title, content, regDate, readCount
+		FROM boarddto
+		WHERE userId = 'admin'
+		ORDER BY bno DESC
+	</select>
+
+
+	<!-- 일반 게시글 목록 -->
+	<select id="memberBoardList" resultType="com.project.board.domain.BoardDTO">
+		SELECT bno, userId, writer, title, content, regDate, readCount
+		FROM boarddto
+		where not userId = 'admin'
+		ORDER BY bno DESC;
+	</select>
+
+
+	<!-- 공지 게시판 게시글 작성 -->
+	<insert id="adminBoardWrite" parameterType="com.project.board.domain.BoardDTO">
+		INSERT INTO boarddto(userId, writer, title, content)
+		values (#{userId}, #{writer}, #{title}, #{content});
 	</insert>
 
 	<!-- 일반 게시판 게시글 작성 -->
-	<insert id="boardWrite"
-		parameterType="com.project.board.domain.BoardDTO">
-
-		INSERT INTO boarddto(bno, userId, writer, title, content, readCount)
-		values (#{bno}, #{userId}, #{writer}, #{title}, #{content}, #{readCount});
-
+	<insert id="memberBoardWrite" parameterType="com.project.board.domain.BoardDTO">
+		INSERT INTO boarddto( userId, writer, title, content )
+		values (#{userId}, #{writer}, #{title}, #{content});
 	</insert>
-	
-	
+
+
 	<!-- 공지 게시글 삭제하기 -->
-	<delete id = "boardDeleteOp" parameterType = "int">
-	
-	DELETE FROM boarddto
-	WHERE bno = #{bno}
-	AND userId = '1111'
-	
+	<delete id="adminBoardDelete" parameterType="int">
+		DELETE FROM boarddto
+		WHERE bno = #{bno}
+		AND userId = 'admin'
 	</delete>
-	
-	
+
+
 	<!-- 이용자 게시글 삭제하기 -->
-	<delete id = "boardDelete" parameterType = "int">
-	
-	DELETE FROM boarddto
-	WHERE bno = #{bno}
-	
+	<delete id="memberBoardDelete" parameterType="int">
+		DELETE FROM boarddto
+		WHERE bno = #{bno}
 	</delete>
-	
-	<!-- 공지 게시글 수정하기 -->
-	<!-- 수정 예정 -->
-	<update id = "boardUpdateOp" parameterType = "int"  >
-	
-	UPDATE boarddto
-	SET title = #{title}, content = #{content}
-	WHERE userId = '1111'
-	
-	</update>
-	
-	<!-- 이용자 게시글 수정하기 -->
 
+	<!-- 공지 게시글 조회하기 -->
+	<select id="adminBoardView" parameterType="int" resultType="com.project.board.domain.BoardDTO">
+		SELECT bno, userId, write, title, content, regDate, readCount
+		FROM boarddto
+		WHERE bno = #{bno}
+		and userId = 'admin'
+	</select>
 
-	<!-- 공지 게시글 상세 조회하기 -->
-	<select id = "boardDetailOp" parameterType = "int" resultType = "com.project.board.domain.BoardDTO">
-	
-	SELECT bno, userId, write, title, content, regDate, readCount
-	FROM boarddto
-	WHERE bno = #{bno}
-	and userId = '1111'
-	
+	<!-- 이용자 게시글 조회하기 -->
+	<select id="memberBoardView" parameterType="int" resultType="com.project.board.domain.BoardDTO">
+		SELECT bno, write, title, content, regDate, readCount
+		FROM boarddto
+		WHERE bno = #{bno}
+		and not userId = 'admin'
 	</select>
-	
-	
-	<!-- 이용자 게시글 상세 조회하기 -->	
-	<select id = "boardDetail" parameterType = "int" resultType = "com.project.board.domain.BoardDTO">
-	
-	SELECT bno, write, title, content, regDate, readCount
-	FROM boarddto
-	WHERE bno = #{bno}
-	and not userId = '1111'
-	
-	
-	</select>
-	
+
 </mapper>

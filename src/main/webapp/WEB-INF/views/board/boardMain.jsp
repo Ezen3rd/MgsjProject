@@ -16,18 +16,21 @@
 	
 	if(memberLogon == null){
 	%>
-		<a href="/member/memberLoginPage">로그인</a>
+		<a href="/member/memberLoginPage">로그인하러가기</a>
+		<a href="/member/memberSignUp">회원가입</a>
 	<%
 	} else {
 		
 		if(memberLogon.getUserVerify() == 128){
 	%>
-			<a href="#">관리자페이지</a><br>
+			<a href="/board/adminBoardList">관리자게시판</a><br>
 			<a href="javascript:memberLogout()">관리자 계정 로그아웃</a>
 	<%
 		} else {
 	%>
 			<a href="/member/memberModifyPage">회원정보수정</a>
+			<br>
+			<a href="/board/memberBoardList">회원게시판</a>
 			<br>
 			<a href="javascript:memberLogout()">로그아웃</a>
 	<%

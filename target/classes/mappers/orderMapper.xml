@@ -1,3 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="mappers.orderMapper"></mapper>
+<mapper namespace="mappers.orderMapper">
+
+<!-- 
+orderNum int AI PK 
+userNum int 
+userId varchar(20) 
+orderDate datetime 
+postAddress varchar(20) 
+detailAddress varchar(50) 
+detailAddress2 varchar(50) 
+recipient varchar(10) 
+recipientPhone varchar(15)
+ -->
+<!-- 주문 등록 -->
+<insert id = "orderWrite" parameterType = "com.project.order.domain.OrderDTO">
+INSERT INTO orderdto(orderNum, userNum, userId, orderDate, postAddress, detailAddress, detailAddress2, recipient, recipientPhone)
+VALUES (#{orderNum}, #{userNum}, #{userId}, NOW(), #{postAddress}, #{detailAddress}, #{detailAdderess2}, #{recipient}, #{recipientPhone})
+</insert>
+
+<!-- 주문 조회 -->
+<select id = "orderView" parameterType = "int" resultType = "com.project.order.domain.OrderDTO">
+SELECT orderNum, userNum, userId, orderDate, postAddress, detailAddress, detailAddress2, recipient, recipientPhone
+FROM orderdto
+WHERE orderNum = #{orderNum}
+</select>
+
+<!-- 주문 수정 -->
+
+<!-- 주문 삭제 -->
+<delete id = "orderDelete" parameterType = "int">
+DELETE FROM orderdto
+WHERE orderNum = #{orderNum}
+</delete>
+
+<!-- 주문 목록 -->
+<select id = "orderList" resultType = "com.project.order.domain.OrderDTO">
+SELECT orderNum, userNum, userId, orderDate, postAddress, detailAddress, detailAddress2, recipient, recipientPhone
+FROM orderdto
+ORDER BY orderNum DESC
+</select>
+
+
+
+
+
+
+</mapper>

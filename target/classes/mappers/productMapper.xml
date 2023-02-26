@@ -1,3 +1,66 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="mappers.productMapper"></mapper>
+<mapper namespace="mappers.productMapper">
+<!--  
+	pno int AI PK  
+	cno int 
+	productName varchar(30) 
+	productPrice int 
+	productStock int 
+	productDescription text 
+	productRegDate datetime 
+	productReadCnt int
+ -->
+ 
+ <!-- 상품 게시글 등록하기 -->
+ <insert id = "productWrite" parameterType = "com.project.product.domain.ProductDTO">
+	 
+	 INSERT INTO productdto(pno, cno, productName, productPrice, productStock, productDescription, productRegDate, productReadCnt)
+	 VALUES (#{pno}, #{cno}, #{productName}, #{productPrice}, #{productStock}, #{productDescription}, #{productRegDate}, #{productReadCnt})
+
+ </insert>
+ 
+ <!-- 상품 게시글 삭제하기 -->
+ <delete id = "productDelete" parameterType = "int">
+ 	
+ 	DELETE FROM productdto
+ 	WHERE pno = #{pno}
+ 
+ </delete>
+ 
+ <!-- 상품 게시글 수정하기 -->
+ 
+ 
+ <!-- 상품 게시글 상세 조회 -->
+ <select id = "productDetail" parameterType = "int" resultType = "com.project.product.domain.ProductDTO">
+ 	
+ 	SELECT pno, cno, productName, productPrice, productStock, productDescription, productRegDate, productReadCnt
+ 	FROM productdto
+ 	WHERE pno = #{pno}
+ 
+ </select>
+ 
+ <!-- 상품 게시글 목록 -->
+<select id = "productList" resultType = "com.project.product.domain.ProductDTO">
+
+	SELECT pno, cno, productName, productPrice, productStock, productDescription, productRegDate, productReadCnt
+	FROM productdto
+	ORDER BY pno DESC
+
+
+</select>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</mapper>
