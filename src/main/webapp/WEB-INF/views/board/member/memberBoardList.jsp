@@ -15,6 +15,7 @@
 					<th class="col-sm-1  text-center">번 호</th>
 					<th class="col-sm-4  text-center">제 목</th>
 					<th class="col-sm-1  text-center">작성자</th>
+					<th class="col-sm-1  text-center">작성자아이디</th>
 					<th class="col-sm-3  text-center">작성일자</th>
 					<th class="col-sm-1  text-center">조회수</th>
 				</tr>
@@ -35,6 +36,7 @@
 						<a href="/board/boardView?bno=${memberBoardList.bno}">${memberBoardList.title}</a></td>
 						<!-- <td class = "hidden">${notice.content}</td>-->
 						<td align="center">${memberBoardList.writer}</td>
+						<td align="center">${memberBoardList.userId}</td>
 						<td>
 							<fmt:formatDate value="${memberBoardList.regDate}" pattern="yyyy-MM-dd" />
 						</td>

@@ -4,6 +4,7 @@ import java.util.Date;
 
 public class MemberDTO {
 
+	private int userNum;
 	private String userId;
 	private String userPwd;
 	private String userName;
@@ -13,6 +14,13 @@ public class MemberDTO {
 	private String userGender;
 	private int userVerify;
 
+	public int getUserNum() {
+		return userNum;
+	}
+
+	public void setUserNum(int userNum) {
+		this.userNum = userNum;
+	}
 
 	public String getUserId() {
 		return userId;
@@ -80,8 +88,9 @@ public class MemberDTO {
 
 	@Override
 	public String toString() {
-		return "MemberDTO [userId=" + userId + ", userPwd=" + userPwd + ", userName=" + userName + ", userPhoneNumber=" + userPhoneNumber
-				+ ", userEmail=" + userEmail + ", userJoinDate=" + userJoinDate + ", userGender=" + userGender + ", userVerify=" + userVerify + "]";
+		return "MemberDTO [userNum=" + userNum + ", userId=" + userId + ", userPwd=" + userPwd + ", userName=" + userName + ", userPhoneNumber="
+				+ userPhoneNumber + ", userEmail=" + userEmail + ", userJoinDate=" + userJoinDate + ", userGender=" + userGender + ", userVerify="
+				+ userVerify + "]";
 	}
 
 }

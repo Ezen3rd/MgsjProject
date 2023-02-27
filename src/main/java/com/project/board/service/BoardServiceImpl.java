@@ -67,7 +67,7 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public void boardModify(BoardDTO boardDTO) throws Exception {
 
-		logger.info("게시글 수정 실행 boardModify - service");
+		logger.info("공지 게시글 수정 boardModify - service");
 
 		boardDAO.boardModify(boardDTO);
 	}

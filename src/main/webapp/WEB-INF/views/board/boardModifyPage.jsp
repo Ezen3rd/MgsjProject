@@ -20,6 +20,7 @@ input[name=userId]:hover {
 <body>
 	<!-- 
 		private int bno;
+		private String userId;
 		private String writer;
 		private String title;
 		private String content;
@@ -27,7 +28,7 @@ input[name=userId]:hover {
 		private int readCount;
 	 -->
 	<%
-	MemberDTO memberInfo = (MemberDTO) session.getAttribute("memberInfo");
+	MemberDTO memberInfo = (MemberDTO) session.getAttribute("memberLogon");
 
 	if (memberInfo.getUserVerify() == 128) {
 	%>
@@ -40,11 +41,6 @@ input[name=userId]:hover {
 	}
 	%>
 	<form action="/board/boardModify" method="post">
-		<div style="display: none;">
-			<label>게시글 번호 : </label>
-			<input type="text" name="bno" value="${boardDTO.bno }">
-		</div>
-		
 		<div>
 			<label>게시글 제목 : </label>
 			<input type="text" name="title" value="${boardDTO.title }">
@@ -53,10 +49,14 @@ input[name=userId]:hover {
 		<hr>
 		<br>
 
-		<div title="작성자는 수정이 불가능합니다">
+		<div>
 			<label>작성자 : </label>
-			<input type="text" name="writer" value="${boardDTO.writer }" readonly="readonly">
+			<input type="text" name="writer" value="${boardDTO.writer }">
 			<br>
+		</div>
+		<div style="font-size: 2px;" title="아이디는 수정이 불가능합니다">
+			<label>아이디 : </label>
+			<input style="font-size: 2px;" type="text" name="userId" value="${boardDTO.userId }" readonly="readonly">
 		</div>
 
 		<hr>
