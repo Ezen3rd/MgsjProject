@@ -11,10 +11,6 @@
 	<a href="/member/memberSignUp">회원가입페이지</a>
 	<br>
 	<a href="/member/memberLoginPage">로그인페이지</a>
-	<div>
-		<h1>비회원</h1>
-		<a href="/board/boardWritePage">비회원 게시글 작성하기</a>
-	</div>
 </body>
 </html>
 

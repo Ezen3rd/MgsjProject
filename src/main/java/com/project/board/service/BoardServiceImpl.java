@@ -67,6 +67,7 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public BoardDTO memberBoardView(int bno) throws Exception {
 
+<<<<<<< .merge_file_LhIRlN
 		logger.info("BoardServiceImpl에서 이용자 게시글 상세 조회하기 시작");
 
 		return boardDAO.memberBoardView(bno);
@@ -75,6 +76,9 @@ public class BoardServiceImpl implements BoardService {
 	// 공지 게시글 목록보기
 	@Override
 	public List<BoardDTO> adminBoardList() throws Exception {
+=======
+		logger.info("공지 게시글 수정 boardModify - service");
+>>>>>>> .merge_file_Y6bf6C
 
 		logger.info("BoardServiceImpl에서 공지 게시글 상세 조회하기 시작");
 

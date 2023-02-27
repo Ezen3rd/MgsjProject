@@ -1,36 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mappers.boardMapper">
-	<!-- 
-		bno	int	NO	PRI		auto_increment
-		writer	varchar(20)	NO			
-		title	varchar(50)	NO			
-		content	text	NO			
-		regDate	datetime	NO		CURRENT_TIMESTAMP	DEFAULT_GENERATED
-		readCount	int	NO		0		
-	 -->
+	<!-- bno int userId varchar(20) writer varchar(20) title varchar(50) content text regDate datetime readCount int -->
 
-	<!-- 공지 게시글 목록 -->
+
+	<!-- 공지 게시글 목록 : join을 활용하여 유저인증번호로 조회하는 게시판이 다름 -->
 	<select id="adminBoardList" resultType="com.project.board.domain.BoardDTO">
-		SELECT bno, writer, title, content, regDate, readCount
-		FROM boarddto
-        where boardLevel = 1
-		order by bno desc;
+		SELECT bno, board.userId, writer, title, content, regDate, readCount
+		FROM boarddto as board
+		join memberdto as member
+		on board.userId = member.userId
+		where member.userVerify = 128
+		ORDER BY bno DESC
 	</select>
 
 
 	<!-- 일반 게시글 목록 -->
 	<select id="memberBoardList" resultType="com.project.board.domain.BoardDTO">
-		SELECT bno, writer, title, content, regDate, readCount
-		FROM boarddto
-		where not boardLevel = 1
-		order by bno desc;
+		SELECT bno, board.userId, writer, title, content, regDate, readCount
+		FROM boarddto as board
+		join memberdto as member
+		on board.userId = member.userId
+		where not member.userVerify = 128
+		ORDER BY bno DESC
 	</select>
 
 	<!-- 게시글 작성 -->
 	<insert id="boardWrite" parameterType="com.project.board.domain.BoardDTO">
-		INSERT INTO boarddto(writer, title, content, boardLevel)
-		values (#{writer}, #{title}, #{content}, #{boardLevel});
+		INSERT INTO boarddto( userId, writer, title, content )
+		values (#{userId}, #{writer}, #{title}, #{content});
 	</insert>
 
 	<!-- 게시글 삭제하기 -->
@@ -41,7 +39,7 @@
 
 	<!-- 이용자 게시글 조회하기 -->
 	<select id="boardView" parameterType="int" resultType="com.project.board.domain.BoardDTO">
-		SELECT bno, writer, title, content, regDate, readCount
+		SELECT bno, userId, writer, title, content, regDate, readCount
 		FROM boarddto
 		WHERE bno = #{bno}
 	</select>

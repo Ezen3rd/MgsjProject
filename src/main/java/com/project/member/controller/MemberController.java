@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.project.member.domain.MemberDTO;
 import com.project.member.service.MemberService;
@@ -63,7 +62,7 @@ public class MemberController {
 	
 	// 로그인 기능 구현
 	@RequestMapping(value = "/member/memberLogin", method = RequestMethod.POST)
-	public String memberLogin(MemberDTO memberDTO, HttpServletRequest req, RedirectAttributes reat) throws Exception {
+	public String memberLogin(MemberDTO memberDTO, HttpServletRequest req) throws Exception {
 		
 		logger.info("로그인 진행 memberLoginPage - (controller)");
 		
@@ -72,19 +71,15 @@ public class MemberController {
 		HttpSession session = req.getSession();
 		
 		if (memberInfo == null) {
-			session.setAttribute("isLogon", null);
-			reat.addFlashAttribute("loginMessage", false);
 			logger.info("로그인 실패");
 			
-			return "redirect:/member/memberLoginPage";
-			
 		} else {
-			session.setAttribute("memberInfo", memberInfo);
+			session.setAttribute("memberLogon", memberInfo);
 			
 			if (memberInfo.getUserVerify() == 128) {
-				logger.info("관리자 로그인 : {}", session.getAttribute("memberInfo"));
+				logger.info("관리자 로그인 : {}", session.getAttribute("memberLogon"));
 			} else {
-				logger.info("일반유저 로그인 : {}", session.getAttribute("memberInfo"));
+				logger.info("일반유저 로그인 : {}", session.getAttribute("memberLogon"));
 			}
 			
 		}
@@ -96,7 +91,7 @@ public class MemberController {
 	@RequestMapping(value = "/member/memberLogout", method = RequestMethod.GET)
 	public String memberLogout(HttpSession session) throws Exception {
 		
-		logger.info("유저 로그아웃, 로그아웃 계정 : {}",session.getAttribute("memberInfo").toString());
+		logger.info("유저 로그아웃, 로그아웃 계정 : {}",session.getAttribute("memberLogon").toString());
 		
 		session.invalidate();
 		
