@@ -59,7 +59,7 @@ request.setCharacterEncoding("UTF-8");
 			</tbody>
 		</table>
 		<button type="button" onclick= "location.href = '/'">계속 쇼핑하기</button>
-		<button type="button" onclick = "orderGo()">주문하기</button>
+		<button type="button" onclick = "location.href = '/order/orderList'">주문하기</button>
 	</div>
 	<script type="text/javascript">
 		function deleteCartList(cartNum, productName){

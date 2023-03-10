@@ -1,16 +1,40 @@
 package com.project.product.domain;
 
+import java.util.Arrays;
 import java.util.Date;
 
 public class ProductFileDTO {
 
 	private int productFileNumber;
-	private int pno;
 	private String originFileName;
 	private String storedFileName;
 	private String storedThumbNail;
-	private int fileSize;
+	private byte[] fileSize;
 	private Date fileRegDate;
+	
+	// 오버로딩시 기본생성자 선언은 반드시!!
+	public ProductFileDTO() {
+		// 기본생성자
+	}
+	
+	// 컨트롤러에서 보내주는 정보
+	public ProductFileDTO(String originFileName, String storedFileName, String storedThumbNail) {
+		
+		this.originFileName = originFileName;
+		this.storedFileName = storedFileName;
+		this.storedThumbNail = storedThumbNail;
+		
+	}
+	
+	// 서비스단에서 받아내는 생성자의 역할
+	public ProductFileDTO(int productFileNumber, String originFileName, String storedFileName, String storedThumbNail) {
+		
+		this.productFileNumber = productFileNumber;
+		this.originFileName = originFileName;
+		this.storedFileName = storedFileName;
+		this.storedThumbNail = storedThumbNail;
+		
+	}
 
 	public int getProductFileNumber() {
 		return productFileNumber;
@@ -18,14 +42,6 @@ public class ProductFileDTO {
 
 	public void setProductFileNumber(int productFileNumber) {
 		this.productFileNumber = productFileNumber;
-	}
-
-	public int getPno() {
-		return pno;
-	}
-
-	public void setPno(int pno) {
-		this.pno = pno;
 	}
 
 	public String getOriginFileName() {
@@ -52,11 +68,11 @@ public class ProductFileDTO {
 		this.storedThumbNail = storedThumbNail;
 	}
 
-	public int getFileSize() {
+	public byte[] getFileSize() {
 		return fileSize;
 	}
 
-	public void setFileSize(int fileSize) {
+	public void setFileSize(byte[] fileSize) {
 		this.fileSize = fileSize;
 	}
 
@@ -70,8 +86,8 @@ public class ProductFileDTO {
 
 	@Override
 	public String toString() {
-		return "ProductFileDTO [productFileNumber=" + productFileNumber + ", pno=" + pno + ", originFileName=" + originFileName + ", storedFileName="
-				+ storedFileName + ", storedThumbNail=" + storedThumbNail + ", fileSize=" + fileSize + ", fileRegDate=" + fileRegDate + "]";
+		return "ProductFileDTO [productFileNumber=" + productFileNumber + ", originFileName=" + originFileName + ", storedFileName=" + storedFileName
+				+ ", storedThumbNail=" + storedThumbNail + ", fileSize=" + Arrays.toString(fileSize) + ", fileRegDate=" + fileRegDate + "]";
 	}
-
+	
 }

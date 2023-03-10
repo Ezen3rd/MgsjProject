@@ -29,7 +29,7 @@ public class MemberController {
 	private MemberService memberService;
 	
 	// ********************************테스트 메인페이지 (리다이렉트용 추후 삭제예정)
-	@RequestMapping(value = "/board/boardMain", method = RequestMethod.GET)
+	@RequestMapping(value = "/mainPage/mainPage", method = RequestMethod.GET)
 	public void connectBoardMain() throws Exception {
 		logger.info("축하합니다 원하는 작업이 성공적으로 동작했군요!!");
 	}
@@ -89,7 +89,7 @@ public class MemberController {
 			
 		}
 		
-		return "redirect:/board/boardMain";
+		return "redirect:/mainPage/mainPage";
 	}
 	
 	// 로그아웃 로직
@@ -100,7 +100,7 @@ public class MemberController {
 		
 		session.invalidate();
 		
-		return "redirect:/";
+		return "redirect:/mainPage/mainPage";
 	}
 	
 	// 회원정보수정 페이지 접속
@@ -123,6 +123,6 @@ public class MemberController {
 		
 		memberLogout(session);
 		
-		return "redirect:/board/boardMain";
+		return "redirect:/mainPage/mainPage";
 	}
 }

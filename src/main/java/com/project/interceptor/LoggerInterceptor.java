@@ -20,6 +20,7 @@ public class LoggerInterceptor extends HandlerInterceptorAdapter{
 			logger.info("=================================로직 로깅 시작=================================");
 			logger.info("\t Request URI \t : {}" , request.getRequestURI());
 		}
+		
 		return super.preHandle(request, response, handler);
 	}
 	

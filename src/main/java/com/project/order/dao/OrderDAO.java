@@ -19,6 +19,8 @@ public interface OrderDAO {
 	public void orderDelete(int orderNum) throws Exception;
 	
 	//주문 목록
-	public List<OrderDTO> orderList() throws Exception;
+	public List<OrderDTO> orderList(OrderDTO orderDTO) throws Exception;
+	
+
 
 }

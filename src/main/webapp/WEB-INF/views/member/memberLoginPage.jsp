@@ -4,22 +4,63 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>멤버로그인페이지</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>로그인</title>
+<link rel="stylesheet" href="/resources/login/styles/reset.css">
+<link rel="stylesheet" href="/resources/login/styles/login.css">
 </head>
 <body>
-	<form action="/member/memberLogin" method="post">
-		<div>
-			<label for="id">아이디</label>
-			<input type="text" id="userId" name="userId" />
+	<div class="login">
+		<h1>
+			<a href="/common/common.html">
+				<span class="login-logo">Ezen</span>
+			</a>
+		</h1>
+
+		<form action="/member/memberLogin" method="post" id="login-form" name="login-form">
+			<div class="login-box">
+				<ul>
+					<li>
+						<span class="id-icon">
+							<!-- 장식이미지 -->
+						</span>
+						<span>
+							<input type="text" id="userId" name="userId" placeholder="아이디">
+						</span>
+					</li>
+					<li class="error id-error">아이디를 입력해주세요</li>
+					<li>
+
+						<span class="pwd-icon">
+							<!-- 장식이미지 -->
+						</span>
+						<span>
+							<input type="password" id="userPwd" name="userPwd" placeholder="비밀번호">
+						</span>
+
+					</li>
+					<li class="error pwd-error">비밀번호를 입력해주세요</li>
+				</ul>
+				<button type="submit" id="login-btn" onclick="memberLogin()">로그인</button>
+			</div>
+		</form>
+		<div class="btm">
+			<!-- <p>
+				<label>
+					<input type="checkbox" name="login-y" id="login-y">
+					<span>자동로그인</span>
+				</label>
+			</p> -->
+			<h3>
+				아이디나 비밀번호를 잊으셨나요?
+				<a href="/id&pwd/find-idpwd.html" class="idpw-search">계정찾기</a>
+			</h3>
 		</div>
-		<div>
-			<label for="password">비밀번호</label>
-			<input type="password" id="userPwd" name="userPwd"/>
-		</div>
-		<div>
-			<button type="submit">로그인</button>
-		</div>
-	</form>
-	<a href="/member/memberSignUp"><button>회원가입</button></a>
+		<a href="/member/memberSignUp" class="join_link">회원가입</a>
+	</div>
+
+	<footer> &copy; Ezen project. 대충간지나는 말. </footer>
 </body>
+<script src="/resources/login/script/memberlogin.js"></script>
 </html>

@@ -54,11 +54,12 @@ public class OrderServiceImpl implements OrderService {
 	}
 	// 주문 목록
 	@Override
-	public List<OrderDTO> orderList() throws Exception {
+	public List<OrderDTO> orderList(OrderDTO orderDTO) throws Exception {
 		
 		logger.info("주문 목록 orderList - Service");
 		
-		return orderDAO.orderList();
+		return orderDAO.orderList(orderDTO);
 	}
+	
 	
 }

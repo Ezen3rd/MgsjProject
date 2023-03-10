@@ -86,14 +86,9 @@ public class CartController {
 		MemberDTO memberLoginSession = (MemberDTO)session.getAttribute("memberInfo");
 		
 		if (memberLoginSession == null || !memberLoginSession.getUserId().equals(userId)) {
+			// 세션값이 없을때, 세션아이디값과 db에 있는 아이디값이 다를경우
 			
-			System.out.println("세션 아이디값====== " + memberLoginSession.getUserId());
 			
-			System.out.println("그냥 아이디값====== " + userId);
-			
-			System.out.println("트루 맞음 false 틀림" + memberLoginSession.getUserId() == userId);
-			
-			System.out.println("트루 맞음 false 틀림" + memberLoginSession.getUserId().equals(userId));
 			
 			return false;
 			

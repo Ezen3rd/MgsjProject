@@ -5,11 +5,18 @@ public class CartDTO {
 	private int pno;
 	private int productCnt;
 	private String userId;
-	
+
 	private String productName;
 	private int productPrice;
 	
+	/*
+	private int totalPrice;
 	
+	//totalPrice에 저장될 값
+	public CartDTO() {
+		this.totalPrice = this.productCnt * this.productPrice;
+	}
+	*/
 	public int getCartNum() {
 		return cartNum;
 	}
@@ -57,11 +64,22 @@ public class CartDTO {
 	public void setUserId(String userId) {
 		this.userId = userId;
 	}
+	/*
+	public int getTotalPrice() {
+		return totalPrice;
+	}
+
+	public void setTotalPrice(int totalPrice) {
+		this.totalPrice = totalPrice;
+	}
+	*/
 
 	@Override
 	public String toString() {
-		return "CartDTO [cartNum=" + cartNum + ", pno=" + pno + ", productCnt=" + productCnt + ", productName="
-				+ productName + ", productPrice=" + productPrice + ", userId=" + userId + "]";
+		return "CartDTO [cartNum=" + cartNum + ", pno=" + pno + ", productCnt=" + productCnt + ", userId=" + userId
+				+ ", productName=" + productName + ", productPrice=" + productPrice + "]";
 	}
+
+	
 
 }

@@ -34,12 +34,17 @@ WHERE orderNum = #{orderNum}
 </delete>
 
 <!-- 주문 목록 -->
-<select id = "orderList" resultType = "com.project.order.domain.OrderDTO">
-SELECT orderNum, userId, orderDate, postAddress, detailAddress, detailAddress2, recipient, recipientPhone
-FROM orderdto
-ORDER BY orderNum DESC
-</select>
+<select id = "orderList" parameterType = "com.project.order.domain.OrderDTO" resultType = "com.project.order.domain.OrderDTO">
+SELECT orderNum, o.userId, orderDate, postAddress, detailAddress, detailAddress2, recipient, recipientPhone, p.productName, p.productPrice, c.productCnt 
+	FROM orderdto as o
+	INNER JOIN cartdto as c
+    ON o.userId = c.userId
+    JOIN productdto as p
+    ON c.pno = p.pno
+    WHERE o.userId = #{userId}
+    ORDER BY orderNum;
 
+</select>
 
 
 

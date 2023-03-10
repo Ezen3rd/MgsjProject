@@ -55,10 +55,12 @@ public class OrderDAOImpl implements OrderDAO {
 	}
 	// 주문 목록
 	@Override
-	public List<OrderDTO> orderList() throws Exception {
+	public List<OrderDTO> orderList(OrderDTO orderDTO) throws Exception {
 		
 		logger.info("주문 목록 orderList - DAO");
 		
-		return sqlSession.selectList(NAME_SPACE + ".orderList");
+		return sqlSession.selectList(NAME_SPACE + ".orderList", orderDTO);
 	}
+	
+
 }
