@@ -84,4 +84,9 @@ public class HomeController {
 		return "home";
 	}
 	
+	@RequestMapping(value = "/mainPage/mainClone", method = RequestMethod.GET)
+	public void mainClone() throws Exception {
+
+	}
+	
 }

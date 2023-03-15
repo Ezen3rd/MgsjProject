@@ -7,7 +7,12 @@ public class OrderDetailDTO {
 	private int productPrice;
 	private int productCnt;
 	private String orderStatus;
-	private int userNum;
+	
+	// 이너 조인 값
+	private String userId;
+	private String productName;
+	private int orderDate;
+	
 	
 	public int getOrderNum() {
 		return orderNum;
@@ -39,16 +44,32 @@ public class OrderDetailDTO {
 	public void setOrderStatus(String orderStatus) {
 		this.orderStatus = orderStatus;
 	}
-	public int getUserNum() {
-		return userNum;
+	public String getUserId() {
+		return userId;
 	}
-	public void setUserNum(int userNum) {
-		this.userNum = userNum;
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
+	
+	public String getProductName() {
+		return productName;
+	}
+	public void setProductName(String productName) {
+		this.productName = productName;
+	}
+	
+	public int getOrderDate() {
+		return orderDate;
+	}
+	public void setOrderDate(int orderDate) {
+		this.orderDate = orderDate;
+	}
+	
 	@Override
 	public String toString() {
 		return "OrderDetailDTO [orderNum=" + orderNum + ", pno=" + pno + ", productPrice=" + productPrice
-				+ ", productCnt=" + productCnt + ", orderStatus=" + orderStatus + ", userNum=" + userNum + "]";
+				+ ", productCnt=" + productCnt + ", orderStatus=" + orderStatus + ", userId=" + userId
+				+ ", productName=" + productName + ", orderDate=" + orderDate + "]";
 	}
 	
 	

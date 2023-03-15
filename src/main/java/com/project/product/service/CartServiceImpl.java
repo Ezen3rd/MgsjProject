@@ -40,11 +40,11 @@ public class CartServiceImpl implements CartService {
 	
 	//장바구니 삭제
 	@Override
-	public void cartDelete(int cartNum) throws Exception {
+	public void cartDelete(int pno) throws Exception {
 		
 		logger.info("장바구니 삭제 cartDelete - Service");
 		
-		cartDAO.cartDelete(cartNum);
+		cartDAO.cartDelete(pno);
 		
 	}
 	

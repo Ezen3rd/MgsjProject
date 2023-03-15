@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mappers.adminMapper">
+	
+	<!-- (관리자) 회원 목록 가져오기 -->
+	<select id="getMemberList" resultType="com.project.member.domain.MemberDTO" parameterType="hashMap">
+		
+		select 
+			userNum,
+			userId,
+			userPwd,
+			userName,
+			userPhoneNumber,
+			userEmail,
+			userJoinDate,
+			userGender,
+			userVerify
+	
+		from memberdto
+		
+		<if test="searchType.equals('userId')">
+			where userId like concat('%', #{keyword}, '%')
+		</if>
+		<if test="searchType.equals('userName')">
+			where userName like concat('%', #{keyword}, '%')
+		</if>
+		<if test="searchType.equals('userVerify')">
+			where userVerify like concat('%', #{keyword}, '%')
+		</if>
+		
+		order by userVerify desc
+		limit #{displayTotalContent} , #{pageContent}
+		
+	</select>
+	
+	<!-- 검색된 결과에 따른 총 갯수를 가져오는 쿼리. 페이징 + 검색기능에 필요. -->
+	<select id="totalSearchMember" resultType="Int" parameterType="hashmap">
+		
+		select count(*)
+			from memberdto
+		
+		<if test="searchType.equals('userId')">
+			where userId like concat('%', #{keyword}, '%')
+		</if>
+		<if test="searchType.equals('userName')">
+			where userName like concat('%', #{keyword}, '%')
+		</if>
+		<if test="searchType.equals('userVerify')">
+			where userVerify like concat('%', #{keyword}, '%')
+		</if>
+		
+	</select>
+	
+</mapper>

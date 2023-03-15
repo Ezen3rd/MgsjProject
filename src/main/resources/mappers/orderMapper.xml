@@ -14,15 +14,37 @@ recipientPhone varchar(15)
  -->
 <!-- 주문 등록 -->
 <insert id = "orderWrite" parameterType = "com.project.order.domain.OrderDTO">
+
 INSERT INTO orderdto(orderNum, userId, orderDate, postAddress, detailAddress, detailAddress2, recipient, recipientPhone)
 VALUES (#{orderNum}, #{userId}, NOW(), #{postAddress}, #{detailAddress}, #{detailAdderess2}, #{recipient}, #{recipientPhone})
+
 </insert>
 
-<!-- 주문 조회 -->
-<select id = "orderView" parameterType = "int" resultType = "com.project.order.domain.OrderDTO">
-SELECT orderNum, userId, orderDate, postAddress, detailAddress, detailAddress2, recipient, recipientPhone
-FROM orderdto
-WHERE orderNum = #{orderNum}
+<!-- 주문 상세 등록 -->
+<insert id = "orderDetailWrite" parameterType = "com.project.order.domain.OrderDetailDTO">
+
+INSERT INTO orderdetaildto
+VALUES(#{orderNum}, #{pno}, #{productPrice}, #{productCnt}, #{orderStatus}, #{userId})
+
+
+</insert>
+
+<!-- 주문 상세 조회 -->
+<!-- orderdetailDTO -->
+<!-- 주문번호, 사용자이이디(세션용), 상품명, 주문일자, 상품가격, 카트의 상품주문량 -->
+<select id = "orderView" parameterType = "int" resultType = "com.project.order.domain.OrderDetailDTO">
+
+SELECT o.orderNum, o.userId, o.orderDate, p.productName, p.productPrice, c.productCnt
+	FROM orderdetaildto as od
+	INNER JOIN orderdto as o
+	ON od.orderNum = o.orderNum
+	INNER JOIN cartdto as c
+	ON o.userId = c.userId
+	JOIN productdto as p
+	ON c.pno = p.pno
+WHERE o.userId = #{o.userId};
+
+
 </select>
 
 <!-- 주문 수정 -->
@@ -35,18 +57,28 @@ WHERE orderNum = #{orderNum}
 
 <!-- 주문 목록 -->
 <select id = "orderList" parameterType = "com.project.order.domain.OrderDTO" resultType = "com.project.order.domain.OrderDTO">
-SELECT orderNum, o.userId, orderDate, postAddress, detailAddress, detailAddress2, recipient, recipientPhone, p.productName, p.productPrice, c.productCnt 
+
+SELECT orderNum, o.userId, orderDate, postAddress, detailAddress, detailAddress2, recipient, recipientPhone, p.productName, p.productPrice, c.productCnt, p.pno 
 	FROM orderdto as o
 	INNER JOIN cartdto as c
     ON o.userId = c.userId
     JOIN productdto as p
     ON c.pno = p.pno
     WHERE o.userId = #{userId}
-    ORDER BY orderNum;
+    ORDER BY orderNum
 
 </select>
 
+<!-- 회원 주소 조회 -->
+<select id = "memAddress" parameterType = "String" resultType = "com.project.member.domain.MemberAddressDTO">
 
+select m.userId, postAddress, address, detailAddress, m.userPhoneNumber
+from memberaddressdto as ma
+INNER JOIN memberdto as m
+ON ma.userId = m.userId
+where m.userId = '1111';
+
+</select>
 
 
 

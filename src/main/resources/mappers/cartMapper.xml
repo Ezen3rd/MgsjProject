@@ -5,7 +5,7 @@
 	<!-- cartdto cartNum int NO PRI pno int NO PRI productCnt int NO -->
 	<!-- 장바구니 등록 -->
 	<insert id="cartWrite" parameterType="com.project.product.domain.CartDTO">
-		INSERT INTO cartdto(pno, productCnt, userId)
+		INSERT INTO cartdto (pno, productCnt, userId)
 		VALUES (#{pno}, #{productCnt}, #{userId})
 	</insert>
 
@@ -16,19 +16,21 @@
 	<!-- 장바구니 삭제 -->
 	<delete id="cartDelete" parameterType="int">
 		DELETE FROM cartdto
-		WHERE cartNum = #{cartNum}
+		WHERE pno = #{pno}
 	</delete>
 
 	<!-- 장바구니 목록 -->
 	<select id="cartList" parameterType="com.project.product.domain.CartDTO" resultType="com.project.product.domain.CartDTO">
-		SELECT c.cartNum, c.pno, p.productName, p.productPrice, c.productCnt, member.userId
+		SELECT c.pno, p.productName, p.productPrice, SUM(c.productCnt) as totalCnt, member.userId, c.productCnt
 			FROM cartdto as c
 				INNER JOIN productdto as p
 				ON c.pno = p.pno
 				join memberdto as member
 				on member.userId = c.userId
-			where member.userId = #{userId}
-			ORDER BY c.cartNum;
+			where member.userId = '1111'
+            GROUP BY c.pno
+			ORDER BY c.pno
+
 	</select>
 
 </mapper>

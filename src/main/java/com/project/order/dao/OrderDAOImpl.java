@@ -8,7 +8,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.project.member.domain.MemberAddressDTO;
 import com.project.order.domain.OrderDTO;
+import com.project.order.domain.OrderDetailDTO;
 
 @Repository
 public class OrderDAOImpl implements OrderDAO {
@@ -30,12 +32,12 @@ public class OrderDAOImpl implements OrderDAO {
 	}
 	// 주문 조회
 	@Override
-	public OrderDTO orderView(int orderNum) throws Exception {
+	public OrderDetailDTO orderView(String userId) throws Exception {
 		
 		logger.info("주문 조회 orderView - DAO");
 		
 		
-	return sqlSession.selectOne(NAME_SPACE + ".orderView", orderNum);
+	return sqlSession.selectOne(NAME_SPACE + ".orderView", userId);
 	}
 	// 주문 수정
 	@Override
@@ -62,5 +64,13 @@ public class OrderDAOImpl implements OrderDAO {
 		return sqlSession.selectList(NAME_SPACE + ".orderList", orderDTO);
 	}
 	
-
+	//회원 주소 조회
+	@Override
+	public MemberAddressDTO memAddress(String userId) throws Exception {
+				
+		logger.info("회원 주소 조회 memAddress - DAO");
+		
+		
+		return sqlSession.selectOne(NAME_SPACE + ".memAddress", userId);
+	}
 }

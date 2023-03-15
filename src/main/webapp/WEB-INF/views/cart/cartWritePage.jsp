@@ -28,8 +28,6 @@ request.setCharacterEncoding("UTF-8");
 					<h2 align="center">장바구니 등록</h2>
 				</div>
 			</div>
-			<!-- 숨겨놓은 장바구니 번호(프라이머리키, 오토인크리먼트) -->
-			<input type="hidden" class="form-control" name="cartNum" value = "장바구니 번호"/>
 			<div class="form-group">
 				<label class="col-sm-2 control-label">제품 번호</label>
 				<div class="col-sm-4">

@@ -13,7 +13,7 @@ public interface CartService {
 	public void cartUpdate(CartDTO cartDTO) throws Exception;
 	
 	//장바구니 삭제
-	public void cartDelete(int cartNum) throws Exception;
+	public void cartDelete(int pno) throws Exception;
 	
 	//장바구니 목록
 	public List<CartDTO> cartList(CartDTO cartDTO) throws Exception;
