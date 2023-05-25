@@ -32,10 +32,17 @@ STS3, VS Code, ERD Cloud, GitHub, SourceTree
 
 <h1>PREVIEW</h1>
 <h2>Preview1 (메인페이지)</h2>
-![image](https://github.com/Ezen3rd/MgsjProject/assets/114370547/f0b8059d-b66c-46a9-8b21-dfa97971833e)
+
+![image](https://github.com/Ezen3rd/MgsjProject/assets/114370547/56e703cc-c6ce-41ab-866e-f552bcfb2730)
+
 <h2>Preview2 (상품목록)</h2>
+
 ![image](https://github.com/Ezen3rd/MgsjProject/assets/114370547/db84b1d5-0a74-4cf6-9328-b5de57b8d134)
+
 <h2>Preview3 (장바구니)</h2>
+
 ![image](https://github.com/Ezen3rd/MgsjProject/assets/114370547/2657d824-cd41-4bb4-8943-1fee92051dca)
+
 <h2>Preview4 (결제)</h2>
+
 ![image](https://github.com/Ezen3rd/MgsjProject/assets/114370547/be743993-25ed-4431-8a8a-74169dbcaa44)
